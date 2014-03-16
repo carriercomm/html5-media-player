@@ -35,8 +35,6 @@ function updateDirectoryContent (data) {
 
 function handleDirectoryClickEvent (event) {
     if (!isDefined ($(this).attr ("data-directory"))) {
-        //$("#player").empty ();
-        //$("#player").append ('<source src="' + "fetch.php?filename=" + getCurrentPath () + "/" + $(this).text () +  '" type="audio/mpeg">')
         $("#player").attr ("src", "fetch.php?filename=" + getCurrentPath () + "/" + $(this).text ());
         document.getElementById('player').load();
         document.getElementById('player').play();
