@@ -21,4 +21,6 @@ if ($handle = opendir(BASE_PATH . $path)) {
     closedir($handle);
 }
 
+header ("Content-Type:application/json;charset=utf-8");
+
 echo json_encode($entries);
