@@ -15,7 +15,7 @@ $entries = array ();
 if ($handle = opendir(BASE_PATH . $path)) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {
-            $entries [] = array ("path" => $entry, "isDir" => is_dir (BASE_PATH . $path . "/" . $entry));
+            $entries [] = array ("path" => utf8_encode($entry), "isDir" => is_dir (BASE_PATH . $path . "/" . $entry));
         }
     }
     closedir($handle);
