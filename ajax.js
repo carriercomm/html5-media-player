@@ -35,7 +35,8 @@ function updateDirectoryContent (data) {
 
 function handleDirectoryClickEvent (event) {
     if (!isDefined ($(this).attr ("data-directory"))) {
-        $("#player").attr ("src", "fetch.php?filename=" + getCurrentPath () + "/" + $(this).text ());
+        var url = encodeURIComponent (getCurrentPath () + "/" + $(this).text ());
+        $("#player").attr ("src", "fetch.php?filename=" + url);
         document.getElementById('player').load();
         document.getElementById('player').play();
         return;

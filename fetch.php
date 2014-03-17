@@ -8,7 +8,7 @@
  */
 
 define ("BASE_PATH", "c:/Partage/MusiqueTag/");
-$filename=$_GET['filename'];
+$filename=rawurldecode($_GET['filename']);
 $location=BASE_PATH.$filename;
 
 $extension = substr(strrchr($filename,'.'),1);
