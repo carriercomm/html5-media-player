@@ -2,7 +2,7 @@ $.ajaxSetup({
     cache: false
 });
 
-var currentPath = new Array ();
+var currentPath = [];
 
 function isDefined(x) {
     var undefinedVar;
@@ -11,6 +11,17 @@ function isDefined(x) {
 
 function getCurrentPath () {
     return currentPath.join ("/");
+}
+
+function updateDirectoryContent (data) {
+    $("#explorer").empty ();
+    $.each(data, function () {
+        var dataAttribute = "";
+        if (this.isDir) {
+            dataAttribute = " data-directory='true'";
+        }
+        $("#explorer").append ('<li' + dataAttribute + '>' + this.path + '</li>');
+    });
 }
 
 function startDirectoryContent () {
@@ -22,18 +33,7 @@ function startDirectoryContent () {
         'success': updateDirectoryContent});
 }
 
-function updateDirectoryContent (data) {
-    $("#explorer").empty ();
-    $.each(data, function () {
-        var dataAttribute = "";
-        if (this.isDir) {
-            dataAttribute = " data-directory='true'";
-        }
-        $("#explorer").append ('<li' + dataAttribute + '>' + this.path + '</li>')
-    });
-}
-
-function handleDirectoryClickEvent (event) {
+function handleDirectoryClickEvent () {
     if (!isDefined ($(this).attr ("data-directory"))) {
         var url = encodeURIComponent (getCurrentPath () + "/" + $(this).text ());
         $("#player").attr ("src", "fetch.php?filename=" + url);
@@ -49,7 +49,7 @@ function topDirectory (event) {
     if (event) {
         event.preventDefault();
     }
-    currentPath = new Array ();
+    currentPath = [];
     currentPath.push (".");
     startDirectoryContent ();
 }
