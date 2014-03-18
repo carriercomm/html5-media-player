@@ -9,7 +9,7 @@
 
 define ("BASE_PATH", "c:/Partage/MusiqueTag/");
 $filename=rawurldecode($_GET['filename']);
-$location=BASE_PATH.$filename;
+$location=utf8_decode(BASE_PATH.$filename);
 
 $extension = substr(strrchr($filename,'.'),1);
 if ($extension == "mp3") {
